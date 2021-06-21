@@ -1,0 +1,129 @@
+package com.zetcode;
+
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import javax.swing.JPanel;
+
+class Surface extends JPanel {
+    public Surface() { }
+
+    void beziere(int[][] x, int[][] y, Graphics2D g2d){
+        double t;
+        BasicStroke bs1 = new BasicStroke(6, BasicStroke.CAP_ROUND, BasicStroke.JOIN_BEVEL);
+        g2d.setStroke(bs1);
+        g2d.setColor(Color.blue);
+        for(int a=1;a<x.length;a++){
+            for(t=0.0;t<1.0;t+=0.01){
+                double xt= Math.pow(1-t,3)*x[a-1][2] + 3*t*Math.pow(1-t,2)*x[a][0] + 3*Math.pow(t,2)*(1-t)*x[a][1] + Math.pow(t,3)*x[a][2];
+                double yt= Math.pow(1-t,3)*y[a-1][2] + 3*t*Math.pow(1-t,2)*y[a][0] + 3*Math.pow(t,2)*(1-t)*y[a][1] + Math.pow(t,3)*y[a][2];
+
+                g2d.drawLine((int)xt,(int)yt,(int)xt,(int)yt);
+            }
+        }
+        BasicStroke bs2 = new BasicStroke(4, BasicStroke.CAP_ROUND, BasicStroke.JOIN_BEVEL);
+        g2d.setStroke(bs2);
+        for(int b=0;b<x.length;b++){
+            for(int a=0;a<3;a++){
+                int xt= x[b][a];
+                int yt= y[b][a];
+
+                g2d.setColor(Color.white);
+                g2d.drawLine(xt,yt,xt,yt);
+            }
+        }
+
+    }
+
+    void beziere_line(int[] x, int[] y, Graphics2D g2d){
+        double t;
+        g2d.setColor(Color.blue);
+        for(t=0.0;t<1.0;t+=0.01){
+            double xt= Math.pow(1-t,3)*x[0] + 3*t*Math.pow(1-t,2)*x[1] + 3*Math.pow(t,2)*(1-t)*x[2] + Math.pow(t,3)*x[3];
+            double yt= Math.pow(1-t,3)*y[0] + 3*t*Math.pow(1-t,2)*y[1] + 3*Math.pow(t,2)*(1-t)*y[2] + Math.pow(t,3)*y[3];
+
+            g2d.drawLine((int)xt,(int)yt,(int)xt,(int)yt);
+        }
+        BasicStroke bs2 = new BasicStroke(5, BasicStroke.CAP_ROUND, BasicStroke.JOIN_BEVEL);
+        g2d.setStroke(bs2);
+        g2d.setColor(Color.white);
+        for(int a=0;a<3;a++){
+            int xt= x[a];
+            int yt= y[a];
+            g2d.drawLine(xt,yt,xt,yt);
+        }
+    }
+
+    private void doDrawing(Graphics g) {
+         this.setBackground(Color.red);
+        Graphics2D g2d = (Graphics2D) g.create();
+
+        int xoff=179; 
+        int yoff=387; 
+
+
+        int[][] x = new int[][]{ // podaje wartosci x  
+
+
+        {172 + xoff,111 + xoff,110 + xoff},
+        {109 + xoff,118 + xoff,103 + xoff},
+        {88 + xoff,58 + xoff,58 + xoff},
+        {58 + xoff,81 + xoff,66 + xoff},
+        {51 + xoff,142 + xoff,137 + xoff},
+        {132 + xoff,184 + xoff,184 + xoff},
+        {184 + xoff,198 + xoff,183 + xoff},
+        {168 + xoff,233 + xoff,233 + xoff},
+        {233 + xoff,253 + xoff,238 + xoff},
+        {223 + xoff,201 + xoff,186 + xoff},
+        {171 + xoff,290 + xoff,290 + xoff},
+        {290 + xoff,303 + xoff,288 + xoff},
+        {273 + xoff,333 + xoff,331 + xoff},
+        {329 + xoff,351 + xoff,346 + xoff},
+        {341 + xoff,396 + xoff,381 + xoff},
+        {366 + xoff,426 + xoff,423 + xoff},
+        {420 + xoff,402 + xoff,394 + xoff},
+        {386 + xoff,465 + xoff,452 + xoff},
+        {439 + xoff,414 + xoff,407 + xoff},
+        {400 + xoff357 + xoff,356 + xoff},
+        {355 + xoff,364 + xoff,349 + xoff},
+        {334 + xoff,311 + xoff,296 + xoff};
+
+
+
+        int[][] y = new int[][]{ // podaje wartosci y
+
+          
+            {400 + yoff,274 + yoff,259 + yoff},
+            {244 + yoff,394 + yoff,391 + yoff},
+            {388 + yoff,384 + yoff,399 + yoff},
+            {414 + yoff,112 + yoff,113 + yoff},
+            {114 + yoff,123 + yoff,109 + yoff},
+            {95 + yoff,233 + yoff,248 + yoff},
+            {263 + yoff,118 + yoff,117 + yoff},
+            {116 + yoff,135 + yoff,120 + yoff},
+            {105 + yoff,387 + yoff,386 + yoff},
+            {385 + yoff,389 + yoff,389 + yoff},
+            {389 + yoff,372 + yoff,387 + yoff},
+            {402 + yoff,118 + yoff,119 + yoff},
+            {120 + yoff,131 + yoff,116 + yoff},
+            {101 + yoff,216 + yoff,230 + yoff},
+            {244 + yoff,119 + yoff,119 + yoff},
+            {119 + yoff,133 + yoff,118 + yoff},
+            {103 + yoff,278 + yoff,265 + yoff},
+            {252 + yoff,368 + yoff,361 + yoff},
+            {354 + yoff,372 + yoff,385 + yoff},
+            {398 + yoff,307 + yoff,292 + yoff},
+            {277 + yoff,394 + yoff,396 + yoff},
+            {398 + yoff,388 + yoff,390 + yoff};
+        
+
+        beziere(x,y, g2d);
+    }
+
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        doDrawing(g);
+    }
+}
